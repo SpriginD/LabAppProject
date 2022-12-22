@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Teşekkürler {% endblock %}
+
+{% block headend %}
+<style>
+    .container:has(.row) {
+        margin-top: 15%;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 15%; text-align: center;">
+    <div class="row">
+        <div class="column">
+            <h4>
+                <i class="fa-solid fa-thumbs-up"></i> &nbsp;
+                Geribildiriminiz için teşekkür ederiz
+            </h4>
+            <a href="{{ url_for('index') }}" class="button"> Anasayfaya geri dön </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

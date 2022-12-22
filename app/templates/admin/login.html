@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin Login {% endblock %}
+
+{% block headend %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+          <li><i class="fa-solid fa-circle-exclamation"></i> &nbsp; {{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+  <div class="row">
+    <form action="{{ url_for('login') }}" method="POST">
+      <h4 >Admin Login</h4>
+      <div class="row">
+        <div class="column">
+            <label for="nameInput">Email (*)</label>
+            <input class="u-full-width" type="text" placeholder="Admin Email" id="nameInput" name="mail">
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+            <label for="nameInput">Password (*)</label>
+            <input class="u-full-width" type="password" placeholder="Password" id="nameInput" name="psw">
+        </div>
+      </div>
+      <input type="submit" value="Gönder">
+    </form>
+  </div>
+</div>
+{% endblock %}

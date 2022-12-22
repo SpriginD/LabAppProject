@@ -1,0 +1,127 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton/skeleton.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton/normalize.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block page_body %}
+<div id="lightbox"></div>
+<div class="container">
+    <div class="navbar-spacer"></div>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="navbar-list">
+                <li class="navbar-item"><a class="navbar-link" href="/admin/">Admin</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="/admin/feedback/">Feedback</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="/">TBMYO</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    {% if feedbacks.count() %}
+    <div class="row">
+        <div class="one-half column">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                    <th>Pc No</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody class="tab">
+                {% for feedback in feedbacks %}
+                    <tr class="tablinks" onclick="openFeedback(event, '{{ feedback.id }}')">
+                    <td>{{feedback.pc_no}}</td>
+                    <td>{{feedback.firstname}}</td>
+                    <td>{{feedback.lastname}}</td>
+                    <td>{{feedback.pub_date.strftime("%m/%d/%Y, %H:%M")}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+        <div class="one-half column">
+            {% for feedback in feedbacks %}
+            <div id="{{ feedback.id }}" class="tabcontent">
+                {% if feedback.description %}
+                <div class="row">
+                    <p>{{ feedback.description }}</p>
+                </div>
+                {% endif %}
+                <!-- {% if feedback.description and feedback.filename %}
+                <hr>
+                {% endif %} -->
+                {% if feedback.filename %}
+                <div class="row">
+                    <img width="90%" src="{{ url_for('static', filename='images/feedbacks/'+feedback.filename) }}" 
+                    class="zoomD" alt="{{ feedback.filename }}">
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block tail %}
+
+{% if feedbacks.count() %}
+<script>
+    window.onload = () => {
+        // (A) GET LIGHTBOX & ALL .ZOOMD IMAGES
+        let all = document.getElementsByClassName("zoomD"),
+        lightbox = document.getElementById("lightbox");
+        console.log(all)
+        
+        // (B) CLICK TO SHOW IMAGE IN LIGHTBOX
+        // * SIMPLY CLONE INTO LIGHTBOX & SHOW
+        if (all.length>0) { for (let i of all) {
+            i.onclick = () => {
+                console.log(i);
+                let clone = i.cloneNode();
+                clone.className = "";
+                lightbox.innerHTML = "";
+                lightbox.appendChild(clone);
+                lightbox.className = "show";
+            };
+        }}
+        
+        // (C) CLICK TO CLOSE LIGHTBOX
+        lightbox.onclick = () => {
+            lightbox.className = "";
+        };
+    }
+
+    function openFeedback(evt, feedbackName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(feedbackName).style.display = "flex";
+        evt.currentTarget.className += " active";
+    }
+
+    openFeedback(event, '{{ feedbacks[0].id }}')
+</script>
+{% endif %}
+
+{% endblock %}

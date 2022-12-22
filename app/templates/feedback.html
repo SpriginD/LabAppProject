@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} Feedback {% endblock %}
+
+{% block headend %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+          <li><i class="fa-solid fa-circle-exclamation"></i> &nbsp; {{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+  <div class="row">
+    <form action="{{ url_for('sent') }}" method="POST" enctype=multipart/form-data>
+      <h4 >Feedback Formu</h4>
+      <div class="row">
+        <div class="six columns">
+          <label for="nameInput">Adınız (*)</label>
+          <input class="u-full-width" type="text" placeholder="Adınız..." id="nameInput" name="fname">
+        </div>
+        <div class="six columns">
+          <label for="nameInput">Soyadınız (*)</label>
+          <input class="u-full-width" type="text" placeholder="Soyadınız..." id="nameInput" name="lname">
+        </div>
+      </div>
+      <label for="feedbackDescription">Açıklama</label>
+      <textarea  class="u-full-width" id="feedbackDescription" type="text" placeholder="Problemin tanımı..." name="desc"></textarea>
+
+      <div class="row">
+        <div class="one-half column">
+          <input type="file" id="file" accept="image/*" name="file">
+          <label for="file" id="fileLabel">
+            <i class="fa-sharp fa-solid fa-upload"></i>
+            &nbsp;
+            Fotoğraf seçin
+          </label>
+          <div id="filenameContainer">
+            <label id="filename"></label>
+          </div>
+        </div>
+    
+        <div class="one-half column">
+          <input class="u-full-width" type="text" placeholder="PC Numarasını giriniz (*)" id="pcNo" name="pcno">
+        </div>
+      </div>
+        
+      <input type="submit" value="Gönder">
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scriptbody %}
+<script src="{{ url_for('static', filename='js/feedback.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block headend %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pcs.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="container" id="table">
+    <div class="row">
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Problem Seviyesi</th>
+            <th>Visual Studio</th>
+            <th>Sorun</th>
+            <th>Beklenen Çözüm</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td> {{ row[0] }} </td> <!-- ID -->
+            <td> {{ row[1] }} </td> <!-- State -->
+            <td> {{ row[2] }} </td> <!-- VStudio -->
+            <td> <p> {{ row[3] }} </p> </td> <!-- Problem -->
+            <td> <p> {{ row[4] }} </p> </td> <!-- Solution -->
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

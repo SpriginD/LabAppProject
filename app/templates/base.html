@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %} </title>
+    <meta name="description" content="">
+    <meta name="author" content="Bircan Önle">
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Font Awesome Kit -->
+    <script src="https://kit.fontawesome.com/2d9b6f6c44.js" crossorigin="anonymous"></script>
+    
+    <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton/skeleton.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+    {% block headend %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="navbar-spacer"></div>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="navbar-list">
+                <li class="navbar-item"><a class="navbar-link" href="{{ url_for('index') }}">Anasayfa</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="{{ url_for('pc_list') }}">Bilgisayar Listesi</a>
+                </li>
+                <li class="navbar-item"><a class="navbar-link" href="{{ url_for('give_feedback') }}">Feedback</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    {% block scriptbody %}
+    {% endblock %}
+</body>
+
+</html>

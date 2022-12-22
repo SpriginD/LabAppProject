@@ -1,0 +1,47 @@
+#lightbox {
+    position: fixed; z-index: 999;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    
+    background: rgba(0, 0, 0, 0.5);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    visibility: hidden;
+    opacity: 0;
+    
+    transition: opacity ease 0.4s;
+}
+
+#lightbox.show {
+    visibility: visible;
+    opacity: 1;
+}
+    
+#lightbox img {
+    width: 90vw;
+    height: 90vh;
+    object-fit: contain;
+}
+
+.tabcontent {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tabcontent .row {
+    height: 100%;
+}
+
+.tablinks {
+    cursor: pointer;
+}
+
+.navbar-list li:last-child {
+    right: 0;
+    position: absolute;
+}
