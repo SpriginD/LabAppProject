@@ -1,6 +1,5 @@
 .container#table {
     margin-top: 5%;
-    max-height: 400px;
     overflow: auto;
 }
 
@@ -19,20 +18,26 @@ td p {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #222;
+}
+
+@media (min-width: 840px) {
+  .container#table {
+    max-height: 400px;
   }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #555;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #222;
-  }
+}
