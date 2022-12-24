@@ -1,7 +1,0 @@
-/* For devices larger than 400px */
-@media (min-width: 400px) {
-    .container {
-        width: 85%;
-        padding: 0;
-    }
-}
