@@ -15,11 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Font Awesome Kit -->
-    <script src="https://kit.fontawesome.com/2d9b6f6c44.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2d9b6f6c44.js" crossorigin="anonymous" async></script>
     
     <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="preload" src="{{ url_for('static', filename='font/raleway.css') }}" as="font" type="font/woff2" crossorigin">
+    <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
 
     <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
