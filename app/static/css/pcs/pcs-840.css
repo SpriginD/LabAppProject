@@ -1,0 +1,5 @@
+@media (min-width: 840px) {
+    .container#table {
+      max-height: 400px;
+    }
+  }

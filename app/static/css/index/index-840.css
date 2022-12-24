@@ -1,0 +1,9 @@
+@media (min-width: 840px) {
+    .content-column {
+        margin-top: 10%;
+    }
+
+    .content-column h5 {
+        font-size: 1.8rem;
+    }
+}
